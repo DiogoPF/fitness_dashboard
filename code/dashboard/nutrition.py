@@ -24,7 +24,7 @@ def render():
     st.dataframe(df)
 
     # ======= Process your data (example: filter rows where BMI > 25) =======
-    df_processed = df[df["BMI"] > 25]
+    df_processed = df[df["skeletal_muscle_mass"] < 30]
 
     # ======= Upload new CSV back to Supabase =======
     new_file_name = "processed_body_composition.csv"
