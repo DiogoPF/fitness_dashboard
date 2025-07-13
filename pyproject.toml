@@ -1,0 +1,20 @@
+[project]
+name = "fitness-dashboard"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dash>=3.0.4",
+    "dash-bootstrap-components>=2.0.3",
+    "google-generativeai>=0.8.5",
+    "gradio>=5.34.0",
+    "matplotlib>=3.10.3",
+    "pandas>=2.3.0",
+    "pillow>=11.2.1",
+    "plotly>=6.1.2",
+    "pydrive2>=1.21.3",
+    "streamlit>=1.45.1",
+    "streamlit-option-menu>=0.4.0",
+    "streamlit-plotly-events>=0.0.6",
+]
