@@ -174,7 +174,7 @@ def render():
     supabase: Client = create_client(url, key)
 
     # Download the CSV file
-    file_name = "my_data.csv"  # Change to your filename
+    file_name = "body_composition_agg.csv"  # Change to your filename
     response = supabase.storage.from_(bucket).download(file_name)
 
     # Load into pandas
