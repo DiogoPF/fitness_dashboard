@@ -161,22 +161,24 @@ from datetime import date
 # # # with tabs[2]:
 # # #     st.write("Page 1 - Tab 3 content")
 
+from supabase import create_client, Client
+import io
+
 
 def render():
-    tabs = st.tabs(["Tab 1", "Tab 2", "Tab 3"])
+    # Load secrets
+    url = st.secrets["supabase"]["url"]
+    key = st.secrets["supabase"]["key"]
+    bucket = st.secrets["supabase"]["bucket"]
 
-    with tabs[0]:
-        st.write("Page 1 - Tab 1 content")
-        st.subheader("Placeholder Graph")
-        x = np.linspace(0, 10, 100)
-        y = np.sin(x)
-        fig, ax = plt.subplots()
-        ax.plot(x, y)
-        ax.set_title("Sine Wave")
-        st.pyplot(fig)
+    supabase: Client = create_client(url, key)
 
-    with tabs[1]:
-        st.write("Page 1 - Tab 2 content")
+    # Download the CSV file
+    file_name = "my_data.csv"  # Change to your filename
+    response = supabase.storage.from_(bucket).download(file_name)
 
-    with tabs[2]:
-        st.write("Page 1 - Tab 3 content")
+    # Load into pandas
+    csv_bytes = response
+    df = pd.read_csv(io.BytesIO(csv_bytes))
+
+    st.dataframe(df)
